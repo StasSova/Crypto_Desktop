@@ -9,7 +9,8 @@
     <Grid>
         <Grid
             Grid.Row="0"
-            Background="red"
+            Background="{StaticResource primaryBackgroundColor}"
+            Height="auto"
             VerticalAlignment="Center"> 
             
             <Grid.ColumnDefinitions>

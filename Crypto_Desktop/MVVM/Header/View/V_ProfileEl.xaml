@@ -11,12 +11,18 @@
         <vmodel:VM_ProfileEl/>
     </UserControl.DataContext>
     <Grid>
-        <Image 
-            Source="/Resources\Images\ProfileIcon.png" 
-            Style="{StaticResource Icons}">
-            <Image.InputBindings>
+        <Button x:Name="TestButton" Style="{StaticResource bt_header_elem_style}">
+            <Viewbox Style="{StaticResource vb_header_elem_style}">
+                <Path xmlns:x="http://www.w3.org/2000/svg" Fill="{Binding Foreground, ElementName=TestButton}">
+                    <Path.Data>
+                        <PathGeometry Figures="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" FillRule="Nonzero"/>
+                    </Path.Data>
+                </Path>
+            </Viewbox>
+
+            <Button.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding MoveToProfilePageCommand}"/>
-            </Image.InputBindings>
-        </Image>
+            </Button.InputBindings>
+        </Button>
     </Grid>
 </UserControl>

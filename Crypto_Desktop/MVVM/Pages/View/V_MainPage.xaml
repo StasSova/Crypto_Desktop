@@ -7,21 +7,30 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Banance"
+      Background="{StaticResource primaryBackgroundColor}"
       xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
       xmlns:header="clr-namespace:Crypto_Desktop.MVVM.Header"
       >
 
     <Page.Resources>
         <ResourceDictionary>
+            <Style x:Key="TitleContainer" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
             
+            <Style x:Key="mainCont" TargetType="Grid">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
             <!-- TITLE -->
             <Style x:Key="TitlePage" TargetType="TextBlock">
+                <Setter Property="Margin" Value="32"/>
                 <Setter Property="FontSize" Value="32"/>
                 <Setter Property="LineHeight" Value="40"/>
                 <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
             </Style>
-            
-            
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -32,15 +41,30 @@
         </Grid.RowDefinitions>
         <!-- HEADER -->
         <header:PageHeader/>
+        
         <!-- MAIN -->
-        <Grid
-            Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!--Title-->
-            <TextBlock Text="Markets Overview" Style="{StaticResource TitlePage}"/>
+        <Grid Grid.Row="1">
+            <!-- setting margins from the edges of the screen  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/> <!--10%-->
+                <ColumnDefinition Width="8*"/> <!--80%-->
+                <ColumnDefinition Width="1*"/> <!--10%-->
+            </Grid.ColumnDefinitions>
+                    
+            <Grid Style="{StaticResource mainCont}" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <StackPanel Grid.Row="0" Style="{StaticResource TitleContainer}">
+                    <TextBlock Text="Markets Overview" Style="{StaticResource TitlePage}"/>
+                </StackPanel>
+            
+                <StackPanel Grid.Row="1" >
+                
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
