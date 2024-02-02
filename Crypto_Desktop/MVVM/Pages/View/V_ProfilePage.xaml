@@ -1,0 +1,30 @@
+﻿<Page x:Class="Crypto_Desktop.MVVM.Pages.View.V_ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Pages.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="V_ProfilePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel
+        Grid.Row="0"
+        Orientation="Horizontal">
+            <TextBlock 
+            Text="&lt; Back" 
+            Style="{StaticResource NavigateToBackPage}"/>
+        </StackPanel>
+
+        <TextBlock 
+        Grid.Row="1" 
+        Text="Profile page in developing..." 
+        Style="{StaticResource DevText}"/>
+    </Grid>
+</Page>

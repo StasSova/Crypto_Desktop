@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\LeftArrow.png" />
+    <None Remove="Resources\Images\LogoIcon.png" />
+    <None Remove="Resources\Images\LogoutIcon.png" />
+    <None Remove="Resources\Images\ProfileIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\LeftArrow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\LogoIcon.png" />
+    <Resource Include="Resources\Images\LogoutIcon.png" />
+    <Resource Include="Resources\Images\ProfileIcon.png" />
+  </ItemGroup>
+
+</Project>
