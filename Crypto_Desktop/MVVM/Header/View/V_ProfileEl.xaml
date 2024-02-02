@@ -4,8 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Header.View"
+             xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Header.ViewModel"
              mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vmodel:VM_ProfileEl/>
+    </UserControl.DataContext>
     <Grid>
-        <Image Source="/Resources\Images\ProfileIcon.png" Style="{StaticResource Icons}"/>
+        <Image 
+            Source="/Resources\Images\ProfileIcon.png" 
+            Style="{StaticResource Icons}">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding MoveToProfilePageCommand}"/>
+            </Image.InputBindings>
+        </Image>
     </Grid>
 </UserControl>

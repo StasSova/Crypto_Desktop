@@ -7,12 +7,4 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-
-    <Style x:Key="NavigateToBackPage" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-
 </ResourceDictionary>

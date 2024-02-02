@@ -42,11 +42,13 @@
             <vm:VM_Logo/>
         </StackPanel.DataContext>
         
-
-        
         <Image
             Source="/Resources/Images/LogoIcon.png" 
             Style="{StaticResource logoIcon}"/>
         <TextBlock Text="BANANCE" Style="{StaticResource LogoText}"/>
+
+        <StackPanel.InputBindings>
+            <MouseBinding Gesture="LeftClick" Command="{Binding MoveToMainPageCommand}"/>
+        </StackPanel.InputBindings>
     </StackPanel>
 </UserControl>

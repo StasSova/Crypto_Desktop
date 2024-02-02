@@ -13,12 +13,21 @@
 
     <Page.Resources>
         <ResourceDictionary>
+            
+            <!-- TITLE -->
+            <Style x:Key="TitlePage" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="LineHeight" Value="40"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            
+            
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="24px"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- HEADER -->
@@ -31,7 +40,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--Title-->
-            <TextBlock Text="Markets Overview" Foreground="AliceBlue"/>
+            <TextBlock Text="Markets Overview" Style="{StaticResource TitlePage}"/>
         </Grid>
     </Grid>
 </Page>

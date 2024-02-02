@@ -21,7 +21,7 @@ namespace Crypto_Desktop.MVVM.Header.ViewModel
         {
             return !NavigationPageService.Instance.IsCurrentPage<VM_MainPage>();
         }
-        public ICommand MoveToProfilePageCommand
+        public ICommand MoveToMainPageCommand
         {
             get
             {

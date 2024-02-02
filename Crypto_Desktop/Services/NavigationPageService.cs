@@ -1,4 +1,6 @@
 ﻿using Crypto_Desktop.Base;
+using Crypto_Desktop.MVVM.Header.View;
+using Crypto_Desktop.MVVM.Header.ViewModel;
 using Crypto_Desktop.MVVM.Pages.View;
 using Crypto_Desktop.MVVM.Pages.ViewModel;
 using System;
@@ -80,12 +82,24 @@ namespace Crypto_Desktop.Services
         {
             // Add your ViewModel to View mappings here
             _mappings.Add(typeof(VM_MainPage), typeof(V_MainPage));
+
+            //_mappings.Add(typeof(VM_Logo), typeof(V_Logo));
+            //_mappings.Add(typeof(VM_LogoutEl), typeof(V_LogoutEl));
+            //_mappings.Add(typeof(VM_ProfileEl), typeof(V_ProfileEl));
+            
+            _mappings.Add(typeof(VM_LogoutPage), typeof(V_LogoutPage));
+            _mappings.Add(typeof(VM_ProfilePage), typeof(V_ProfilePage));
+
             // ... add other mappings
         }
 
         public bool IsCurrentPage<TViewModel>() where TViewModel : VM_Base
         {
-            return typeof(TViewModel) == CurrentViewModel;
+            try
+            {
+                return typeof(TViewModel) == CurrentViewModel;
+            }
+            catch { return false; }
         }
     }
 }

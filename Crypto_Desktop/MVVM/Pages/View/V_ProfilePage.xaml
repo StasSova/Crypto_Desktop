@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Pages.View"
+      xmlns:header="clr-namespace:Crypto_Desktop.MVVM.Header"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="V_ProfilePage">
@@ -14,13 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel
-        Grid.Row="0"
-        Orientation="Horizontal">
-            <TextBlock 
-            Text="&lt; Back" 
-            Style="{StaticResource NavigateToBackPage}"/>
-        </StackPanel>
+        <header:ShortPageHeader/>
 
         <TextBlock 
         Grid.Row="1" 
