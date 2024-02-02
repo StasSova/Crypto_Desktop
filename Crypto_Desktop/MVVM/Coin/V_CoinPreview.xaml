@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Crypto_Desktop.MVVM.Coin.V_CoinPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Coin"
+             xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
+             Width="auto"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="lv_style" TargetType="ListView">
+                <Setter Property="Width" Value="auto"/>
+            </Style>
+
+            <Style x:Key="sellStyle" TargetType="GridViewColumnHeader">
+                <Setter Property="Width" Value="auto"/>
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <ListView
+        x:Name="CollectionView"
+        SizeChanged="CollectionView_SizeChanged"
+        ItemsSource="{Binding Coins}">
+        <!--<ListView.DataContext>
+            <vmodel:VM_MainPage/>
+        </ListView.DataContext>-->
+        
+        <ListView.View>
+            <GridView x:Name="gridView">
+                <!--Name-->
+                <GridViewColumn Header="Name">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="20" Height="20" Source="{Binding Image}" />
+                                <TextBlock Text="{Binding Symbol}" Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" HeaderContainerStyle="{StaticResource sellStyle}"/>
+                <GridViewColumn Header="Change" DisplayMemberBinding="{Binding PriceChangePercentage24h}" HeaderContainerStyle="{StaticResource sellStyle}"/>
+                <GridViewColumn Header="24h Volume" DisplayMemberBinding="{Binding TotalVolume}" HeaderContainerStyle="{StaticResource sellStyle}"/>
+                <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" HeaderContainerStyle="{StaticResource sellStyle}"/>
+                <!--Actions-->
+                <GridViewColumn Header="Actions">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Details" Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" 
+                                CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            </GridView>    
+        </ListView.View>
+            
+    </ListView>
+    
+</UserControl>

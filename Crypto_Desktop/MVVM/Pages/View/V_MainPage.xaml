@@ -10,6 +10,7 @@
       Background="{StaticResource primaryBackgroundColor}"
       xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
       xmlns:header="clr-namespace:Crypto_Desktop.MVVM.Header"
+      xmlns:Coins="clr-namespace:Crypto_Desktop.MVVM.Coin"
       >
 
     <Page.Resources>
@@ -60,10 +61,8 @@
                 <StackPanel Grid.Row="0" Style="{StaticResource TitleContainer}">
                     <TextBlock Text="Markets Overview" Style="{StaticResource TitlePage}"/>
                 </StackPanel>
-            
-                <StackPanel Grid.Row="1" >
-                
-                </StackPanel>
+
+                <Coins:V_CoinPreview Grid.Row="1"/>
             </Grid>
         </Grid>
     </Grid>
