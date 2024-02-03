@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Pages.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1172"
       Title="Banance"
       Background="{StaticResource primaryBackgroundColor}"
       xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
@@ -62,7 +62,7 @@
                     <TextBlock Text="Markets Overview" Style="{StaticResource TitlePage}"/>
                 </StackPanel>
 
-                <Coins:V_CoinPreview Grid.Row="1"/>
+                <local:V_UC_CollectionCoins Grid.Row="1"/>
             </Grid>
         </Grid>
     </Grid>

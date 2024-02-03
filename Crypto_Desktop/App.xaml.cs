@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -18,6 +20,7 @@ namespace Crypto_Desktop
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             Crypto_Desktop.MainWindow window = new Crypto_Desktop.MainWindow();
             MainWindow = window;
 

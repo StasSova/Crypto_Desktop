@@ -10,7 +10,12 @@
     
     <SolidColorBrush x:Key="yellow">#ffeb3b</SolidColorBrush>
     <SolidColorBrush x:Key="yellow-hover">#ffff00</SolidColorBrush>
-    
 
+
+    <SolidColorBrush x:Key="SecondaryColor">#848E9C</SolidColorBrush>
+    <SolidColorBrush x:Key="RedColor">#F6465D</SolidColorBrush>
+    <SolidColorBrush x:Key="GreenColor">#0ECB81</SolidColorBrush>
+    <SolidColorBrush x:Key="onHoverCoinBackgroundColor">#1e2026</SolidColorBrush>
+    
 
 </ResourceDictionary>

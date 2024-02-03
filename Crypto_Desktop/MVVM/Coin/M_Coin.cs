@@ -22,16 +22,16 @@ namespace Crypto_Desktop.MVVM.Coin
         public Uri Image { get; set; }
 
         [JsonPropertyName("current_price")]
-        public double? CurrentPrice { get; set; }
+        public decimal? CurrentPrice { get; set; }
 
         [JsonPropertyName("market_cap")]
-        public long? MarketCap { get; set; }
+        public decimal? MarketCap { get; set; }
 
         [JsonPropertyName("fully_diluted_valuation")]
         public double? FullyDilutedMarketCap { get; set; }
 
         [JsonPropertyName("total_volume")]
-        public double? TotalVolume { get; set; }
+        public decimal? TotalVolume { get; set; }
 
         [JsonPropertyName("high_24h")]
         public double? High24H { get; set; }

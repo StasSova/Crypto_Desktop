@@ -85,8 +85,10 @@ namespace Crypto_Desktop.MVVM.Pages.ViewModel
             }
             catch
             {
-                // Обработка ошибок
+               
             }
         }
+
+
     }
 }

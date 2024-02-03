@@ -1,0 +1,249 @@
+﻿<UserControl x:Class="Crypto_Desktop.MVVM.Pages.View.V_UC_CollectionCoins"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Pages.View"
+             mc:Ignorable="d"
+             
+             xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
+             xmlns:converter="clr-namespace:Crypto_Desktop.Services"
+             >
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converter:PercentageToBrush x:Key="PercentageToBrush"/>
+            <converter:PercentageToText x:Key="PercentageToText"/>
+            <converter:DecimalToVariableCurrency x:Key="DecimalToVariableCurrency"/>
+            <converter:DecimalToShortCurrency x:Key="DecimalToShortCurrency"/>
+            <converter:StringToUp x:Key="StringToUp"/>
+
+            <Style x:Key="Header_cell" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="LineHeight" Value="40"/>
+            </Style>
+
+            <Style x:Key="Header_cell_HA_R" TargetType="TextBlock" BasedOn="{StaticResource Header_cell}">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+
+
+            <Style x:Key="CoinContainer" TargetType="StackPanel">
+                <!--<Setter Property="Margin" Value="0 4"/>-->
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource onHoverCoinBackgroundColor}"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+
+            <Style x:Key="NameCoinContainer" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <!--<Setter Property="Background" Value="red"/>-->
+            </Style>
+            <Style x:Key="ImageCoint" TargetType="Image">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+                <Setter Property="Width" Value="24"/>
+                <Setter Property="Height" Value="24"/>
+                <Setter Property="Margin" Value="0 8 8 8"/>
+            </Style>
+            <Style x:Key="SymbolCoin" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="LineHeight" Value="24"/>
+                <Setter Property="FontWeight" Value="DemiBold"/>
+                <Setter Property="Margin" Value="0 8 8 8"/>
+            </Style>
+            <Style x:Key="NameCoin" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="LineHeight" Value="12"/>
+                <Setter Property="Margin" Value="0 8 8 10"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+            </Style>
+            <Style x:Key="CoinInfo" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="LineHeight" Value="24"/>
+                <Setter Property="FontWeight" Value="DemiBold"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="0 8 0 8"/>
+            </Style>
+            <Style x:Key="PriceChangeCoin" TargetType="TextBlock" BasedOn="{StaticResource CoinInfo}">
+                
+            </Style>
+
+            
+            <Style x:Key="b_BackSearchContainer" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="Margin" Value="0 0 0 16"/>
+                <Setter Property="Height" Value="auto"/>
+                <Setter Property="Width" Value="auto"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="CornerRadius" Value="18"/>
+            </Style>
+
+            <Style x:Key="sp_SearchContainer" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Margin" Value="5 0"/>
+                <Setter Property="Width" Value="auto"/>
+            </Style>
+
+            <Style x:Key="tb_Search" TargetType="TextBox">
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Panel.ZIndex" Value="10"/>
+                <Setter Property="BorderThickness" Value="0 0 0 0"/>
+                <Setter Property="Margin" Value="18 0 0 0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
+            </Style>
+
+
+            <Style x:Key="vb_search_btn" TargetType="Viewbox">
+                <Setter Property="Height" Value="18"/>
+                <Setter Property="Width" Value="18"/>
+            </Style>
+
+            <Style x:Key="btn_search" TargetType="Button">
+                <Setter Property="Background" Value="red"/>
+                <Setter Property="Margin" Value="0 0 -1 0"/>
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource primaryHeaderIconColor}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                SnapsToDevicePixels="True"
+                                CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Foreground" Value="{DynamicResource primaryHeaderIconColorHover}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vmodel:VM_MainPage/>
+    </UserControl.DataContext>
+    
+    <ScrollViewer Background="Transparent" Margin="0 2 0 0" PanningMode="VerticalOnly" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--SearchButton-->
+            <Border Grid.Row="0" Style="{StaticResource b_BackSearchContainer}">
+                <StackPanel Style="{StaticResource sp_SearchContainer}">
+                    <TextBox Style="{StaticResource tb_Search}"/>
+                    <Button x:Name="searchButton" Style="{StaticResource btn_search}">
+                        <Viewbox Style="{StaticResource vb_search_btn}">
+                            <Path xmlns:x="http://www.w3.org/2000/svg" Fill="{Binding Foreground, ElementName=searchButton}">
+                                <Path.Data>
+                                    <PathGeometry Figures="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" FillRule="Nonzero"/>
+                                </Path.Data>
+                            </Path>
+                        </Viewbox>
+                        <Button.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding MoveToLogoutPageCommand}"/>
+                        </Button.InputBindings>
+                    </Button>
+                    
+                </StackPanel>
+            </Border>
+            <!--Title-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width=".8*"/>-->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Name" Style="{StaticResource Header_cell}"/>
+                <TextBlock Grid.Column="1" Text="Price" Style="{StaticResource Header_cell_HA_R}"/>
+                <TextBlock Grid.Column="2" Text="24h Change" Style="{StaticResource Header_cell_HA_R}"/>
+                <TextBlock Grid.Column="3" Text="24h Volume" Style="{StaticResource Header_cell_HA_R}"/>
+                <TextBlock Grid.Column="4" Text="Market Cap" Style="{StaticResource Header_cell_HA_R}"/>
+                <!--<TextBlock Grid.Column="5" Text="Actions" Style="{StaticResource Header_cell_HA_R}"/>-->
+            </Grid>
+            <!--Content-->
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding Coins}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Tag="{Binding Id}" Style="{StaticResource CoinContainer}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <!--<ColumnDefinition Width=".8*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Style="{StaticResource NameCoinContainer}">
+                                    <Image Source="{Binding Image}" Style="{StaticResource ImageCoint}"/>
+                                    <TextBlock Text="{Binding Symbol, Converter={StaticResource StringToUp}}" Style="{StaticResource SymbolCoin}"/>
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource NameCoin}"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding CurrentPrice, Converter={StaticResource DecimalToVariableCurrency}}" Style="{StaticResource CoinInfo}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding PriceChangePercentage24H, Converter={StaticResource PercentageToText}}" Style="{StaticResource PriceChangeCoin}" Foreground="{Binding PriceChangePercentage24H, Converter={StaticResource PercentageToBrush}}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding TotalVolume, Converter={StaticResource DecimalToShortCurrency}}" Style="{StaticResource CoinInfo}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding MarketCap, Converter={StaticResource DecimalToShortCurrency}}" Style="{StaticResource CoinInfo}"/>
+                                
+                                <!--<StackPanel Grid.Column="5">
+                                    --><!--<Button x:Name="TestButton" Style="{StaticResource bt_header_elem_style}">
+                                        <Viewbox Style="{StaticResource vb_header_elem_style}">
+                                            <Path xmlns:x="http://www.w3.org/2000/svg" Fill="{Binding Foreground, ElementName=TestButton}">
+                                                <Path.Data>
+                                                    <PathGeometry Figures="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" FillRule="Nonzero"/>
+                                                </Path.Data>
+                                            </Path>
+                                        </Viewbox>
+
+                                        <Button.InputBindings>
+                                            <MouseBinding Gesture="LeftClick" Command="{Binding MoveToProfilePageCommand}"/>
+                                        </Button.InputBindings>
+                                    </Button>--><!--
+                                </StackPanel>-->
+
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        
+    </ScrollViewer>
+</UserControl>

@@ -50,7 +50,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Image));
             }
         }
-        public double? CurrentPrice
+        public decimal? CurrentPrice
         {
             get { return _coin.CurrentPrice; }
             set
@@ -59,7 +59,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(CurrentPrice));
             }
         }
-        public long? MarketCap
+        public decimal? MarketCap
         {
             get { return _coin.MarketCap; }
             set
@@ -86,7 +86,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(FullyDilutedValuation));
             }
         }
-        public double? TotalVolume
+        public decimal? TotalVolume
         {
             get { return _coin.TotalVolume; }
             set
