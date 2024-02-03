@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crypto_Desktop.MVVM.Pages.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

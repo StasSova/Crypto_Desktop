@@ -165,7 +165,7 @@
             <!--SearchButton-->
             <Border Grid.Row="0" Style="{StaticResource b_BackSearchContainer}">
                 <StackPanel Style="{StaticResource sp_SearchContainer}">
-                    <TextBox Style="{StaticResource tb_Search}"/>
+                    <TextBox Text="{Binding SearchCoinName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource tb_Search}"/>
                     <Button x:Name="searchButton" Style="{StaticResource btn_search}">
                         <Viewbox Style="{StaticResource vb_search_btn}">
                             <Path xmlns:x="http://www.w3.org/2000/svg" Fill="{Binding Foreground, ElementName=searchButton}">
@@ -175,10 +175,9 @@
                             </Path>
                         </Viewbox>
                         <Button.InputBindings>
-                            <MouseBinding Gesture="LeftClick" Command="{Binding MoveToLogoutPageCommand}"/>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding SearchCoinCommand}"/>
                         </Button.InputBindings>
                     </Button>
-                    
                 </StackPanel>
             </Border>
             <!--Title-->

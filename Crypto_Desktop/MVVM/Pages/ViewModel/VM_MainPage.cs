@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace Crypto_Desktop.MVVM.Pages.ViewModel
@@ -89,6 +90,81 @@ namespace Crypto_Desktop.MVVM.Pages.ViewModel
             }
         }
 
+        private string _searchCoinName;
+        public string SearchCoinName
+        {
+            get { return _searchCoinName; }
+            set
+            {
+                _searchCoinName = value;
+                OnPropertyChanged(nameof(SearchCoinName));
+            }
+        }
 
+        private DelegateCommand? searchCoinCommand;
+        private async Task SearchCoin()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(SearchCoinName))
+                {
+                    await FetchData();
+                }
+                else
+                {
+                    await SearchByName(SearchCoinName);
+                }
+                SearchCoinName = string.Empty;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK);
+            }
+        }
+        private bool CanSearchCoin()
+        {
+            return true;
+        }
+        public ICommand SearchCoinCommand
+        {
+            get
+            {
+                if (searchCoinCommand == null)
+                    searchCoinCommand = new DelegateCommand(ex => SearchCoin(), ce => CanSearchCoin());
+                return searchCoinCommand;
+            }
+        }
+        private async Task SearchByName(string SearchCoinName)
+        {
+            await Application.Current.Dispatcher.InvokeAsync(async() =>
+            {
+                try
+                {
+                    Coins.Clear();
+                    List<M_Coin> coins = await GetCoins();
+                    coins = coins.Where<M_Coin>(x =>
+                            x.Name.Contains(SearchCoinName, StringComparison.OrdinalIgnoreCase) ||
+                            x.Id.Contains(SearchCoinName, StringComparison.OrdinalIgnoreCase) ||
+                            x.Symbol.Contains(SearchCoinName, StringComparison.OrdinalIgnoreCase)
+                    ).ToList<M_Coin>();
+                    if (coins.Count == 0)
+                    {
+                        throw new ArgumentException("No coins found for this pattern, try again");
+                    }
+                    foreach (var coin in coins)
+                    {
+                        Coins.Add(new VM_Coin(coin));
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    await FetchData();
+                    MessageBox.Show(ex.Message, "Invalid input", MessageBoxButton.OK);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK); }
+            });
+
+        }
     }
 }
