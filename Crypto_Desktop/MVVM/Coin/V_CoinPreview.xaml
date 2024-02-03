@@ -5,12 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Coin"
              xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
+             xmlns:converter="clr-namespace:Crypto_Desktop.Services"
              Width="auto"
              mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
-            
+            <converter:PercentageToBrush x:Key="PercentageToBrush"/>
+            <converter:PercentageToText x:Key="PercentageToText"/>
+
+
             <Style x:Key="lv_style" TargetType="ListView">
                 <Setter Property="Width" Value="auto"/>
             </Style>
@@ -45,7 +49,10 @@
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 <GridViewColumn Header="Price" DisplayMemberBinding="{Binding CurrentPrice}" HeaderContainerStyle="{StaticResource sellStyle}"/>
-                <GridViewColumn Header="Change" DisplayMemberBinding="{Binding PriceChangePercentage24h}" HeaderContainerStyle="{StaticResource sellStyle}"/>
+                <GridViewColumn Header="Change" 
+                                DisplayMemberBinding="{Binding PriceChangePercentage24H, Converter={StaticResource PercentageToText}}"
+                                HeaderContainerStyle="{StaticResource sellStyle}"
+                                />
                 <GridViewColumn Header="24h Volume" DisplayMemberBinding="{Binding TotalVolume}" HeaderContainerStyle="{StaticResource sellStyle}"/>
                 <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap}" HeaderContainerStyle="{StaticResource sellStyle}"/>
                 <!--Actions-->

@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Crypto_Desktop.MVVM.Pages.ViewModel
 {
@@ -71,16 +73,19 @@ namespace Crypto_Desktop.MVVM.Pages.ViewModel
         {
             try
             {
-                Coins.Clear();
-                List<M_Coin> coins = await GetCoins();
-                foreach (var coin in coins) 
+                await Application.Current.Dispatcher.BeginInvoke(async () =>
                 {
-                    Coins.Add(new VM_Coin(coin));
-                }
+                    Coins.Clear();
+                    List<M_Coin> coins = await GetCoins();
+                    foreach (var coin in coins)
+                    {
+                        Coins.Add(new VM_Coin(coin));
+                    }
+                });
             }
             catch
             {
-
+                // Обработка ошибок
             }
         }
     }

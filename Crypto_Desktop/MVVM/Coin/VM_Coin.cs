@@ -41,7 +41,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public string Image
+        public Uri Image
         {
             get { return _coin.Image; }
             set
@@ -50,7 +50,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Image));
             }
         }
-        public double CurrentPrice
+        public double? CurrentPrice
         {
             get { return _coin.CurrentPrice; }
             set
@@ -59,7 +59,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(CurrentPrice));
             }
         }
-        public long MarketCap
+        public long? MarketCap
         {
             get { return _coin.MarketCap; }
             set
@@ -68,7 +68,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(MarketCap));
             }
         }
-        public int MarketCapRank
+        public long? MarketCapRank
         {
             get { return _coin.MarketCapRank; }
             set
@@ -77,16 +77,16 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(MarketCapRank));
             }
         }
-        public double FullyDilutedValuation
+        public double? FullyDilutedValuation
         {
-            get { return _coin.FullyDilutedValuation; }
+            get { return _coin.FullyDilutedMarketCap; }
             set
             {
-                _coin.FullyDilutedValuation = value;
+                _coin.FullyDilutedMarketCap = value;
                 OnPropertyChanged(nameof(FullyDilutedValuation));
             }
         }
-        public double TotalVolume
+        public double? TotalVolume
         {
             get { return _coin.TotalVolume; }
             set
@@ -95,61 +95,61 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(TotalVolume));
             }
         }
-        public double High24h
+        public double? High24H
         {
-            get { return _coin.High24h; }
+            get { return _coin.High24H; }
             set
             {
-                _coin.High24h = value;
-                OnPropertyChanged(nameof(High24h));
+                _coin.High24H = value;
+                OnPropertyChanged(nameof(High24H));
             }
         }
-        public double Low24h
+        public double? Low24H
         {
-            get { return _coin.Low24h; }
+            get { return _coin.Low24H; }
             set
             {
-                _coin.Low24h = value;
-                OnPropertyChanged(nameof(Low24h));
+                _coin.Low24H = value;
+                OnPropertyChanged(nameof(Low24H));
             }
         }
-        public double PriceChange24h
+        public double? PriceChange24H
         {
-            get { return _coin.PriceChange24h; }
+            get { return _coin.PriceChange24H; }
             set
             {
-                _coin.PriceChange24h = value;
-                OnPropertyChanged(nameof(PriceChange24h));
+                _coin.PriceChange24H = value;
+                OnPropertyChanged(nameof(PriceChange24H));
             }
         }
-        public double PriceChangePercentage24h
+        public double? PriceChangePercentage24H
         {
-            get { return _coin.PriceChangePercentage24h; }
+            get { return _coin.PriceChangePercentage24H; }
             set
             {
-                _coin.PriceChangePercentage24h = value;
-                OnPropertyChanged(nameof(PriceChangePercentage24h));
+                _coin.PriceChangePercentage24H = value;
+                OnPropertyChanged(nameof(PriceChangePercentage24H));
             }
         }
-        public long MarketCapChange24h
+        public double? MarketCapChange24H
         {
-            get { return _coin.MarketCapChange24h; }
+            get { return _coin.MarketCapChange24H; }
             set
             {
-                _coin.MarketCapChange24h = value;
-                OnPropertyChanged(nameof(MarketCapChange24h));
+                _coin.MarketCapChange24H = value;
+                OnPropertyChanged(nameof(MarketCapChange24H));
             }
         }
-        public double MarketCapChangePercentage24h
+        public double? MarketCapChangePercentage24H
         {
-            get { return _coin.MarketCapChangePercentage24h; }
+            get { return _coin.MarketCapChangePercentage24H; }
             set
             {
-                _coin.MarketCapChangePercentage24h = value;
-                OnPropertyChanged(nameof(MarketCapChangePercentage24h));
+                _coin.MarketCapChangePercentage24H = value;
+                OnPropertyChanged(nameof(MarketCapChangePercentage24H));
             }
         }
-        public double CirculatingSupply
+        public double? CirculatingSupply
         {
             get { return _coin.CirculatingSupply; }
             set
@@ -158,7 +158,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(CirculatingSupply));
             }
         }
-        public double TotalSupply
+        public double? TotalSupply
         {
             get { return _coin.TotalSupply; }
             set
@@ -167,16 +167,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(TotalSupply));
             }
         }
-        public double MaxSupply
-        {
-            get { return _coin.MaxSupply; }
-            set
-            {
-                _coin.MaxSupply = value;
-                OnPropertyChanged(nameof(MaxSupply));
-            }
-        }
-        public double Ath
+        public double? Ath
         {
             get { return _coin.Ath; }
             set
@@ -185,7 +176,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Ath));
             }
         }
-        public double AthChangePercentage
+        public double? AthChangePercentage
         {
             get { return _coin.AthChangePercentage; }
             set
@@ -194,7 +185,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(AthChangePercentage));
             }
         }
-        public DateTime AthDate
+        public DateTimeOffset? AthDate
         {
             get { return _coin.AthDate; }
             set
@@ -203,7 +194,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(AthDate));
             }
         }
-        public double Atl
+        public double? Atl
         {
             get { return _coin.Atl; }
             set
@@ -212,7 +203,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Atl));
             }
         }
-        public double AtlChangePercentage
+        public double? AtlChangePercentage
         {
             get { return _coin.AtlChangePercentage; }
             set
@@ -221,7 +212,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(AtlChangePercentage));
             }
         }
-        public DateTime AtlDate
+        public DateTimeOffset? AtlDate
         {
             get { return _coin.AtlDate; }
             set
@@ -230,7 +221,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(AtlDate));
             }
         }
-        public double? Roi
+        public Roi? Roi
         {
             get { return _coin.Roi; }
             set
@@ -239,7 +230,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Roi));
             }
         }
-        public DateTime LastUpdated
+        public DateTimeOffset? LastUpdated
         {
             get { return _coin.LastUpdated; }
             set

@@ -2,141 +2,111 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Crypto_Desktop.MVVM.Coin
 {
     public class M_Coin
     {
-        /// <summary>
-        /// Уникальный идентификатор монеты.
-        /// </summary>
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Символьный код монеты.
-        /// </summary>
+        [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
 
-        /// <summary>
-        /// Название монеты.
-        /// </summary>
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// URL изображения монеты.
-        /// </summary>
-        public string Image { get; set; }
+        [JsonPropertyName("image")]
+        public Uri Image { get; set; }
 
-        /// <summary>
-        /// Текущая цена монеты.
-        /// </summary>
-        public double CurrentPrice { get; set; }
+        [JsonPropertyName("current_price")]
+        public double? CurrentPrice { get; set; }
 
-        /// <summary>
-        /// Рыночная капитализация монеты.
-        /// </summary>
-        public long MarketCap { get; set; }
+        [JsonPropertyName("market_cap")]
+        public long? MarketCap { get; set; }
 
-        /// <summary>
-        /// Ранг монеты по рыночной капитализации.
-        /// </summary>
-        public int MarketCapRank { get; set; }
+        [JsonPropertyName("fully_diluted_valuation")]
+        public double? FullyDilutedMarketCap { get; set; }
 
-        /// <summary>
-        /// Полностью разводимая оценка монеты.
-        /// </summary>
-        public double FullyDilutedValuation { get; set; }
+        [JsonPropertyName("total_volume")]
+        public double? TotalVolume { get; set; }
 
-        /// <summary>
-        /// Общий объем монеты за последние 24 часа.
-        /// </summary>
-        public double TotalVolume { get; set; }
+        [JsonPropertyName("high_24h")]
+        public double? High24H { get; set; }
 
-        /// <summary>
-        /// Максимальная цена монеты за последние 24 часа.
-        /// </summary>
-        public double High24h { get; set; }
+        [JsonPropertyName("low_24h")]
+        public double? Low24H { get; set; }
 
-        /// <summary>
-        /// Минимальная цена монеты за последние 24 часа.
-        /// </summary>
-        public double Low24h { get; set; }
+        [JsonPropertyName("ath")]
+        public double? Ath { get; set; }
 
-        /// <summary>
-        /// Изменение цены монеты за последние 24 часа.
-        /// </summary>
-        public double PriceChange24h { get; set; }
+        [JsonPropertyName("ath_change_percentage")]
+        public double? AthChangePercentage { get; set; }
 
-        /// <summary>
-        /// Изменение цены монеты за последние 24 часа в процентном соотношении.
-        /// </summary>
-        public double PriceChangePercentage24h { get; set; }
+        [JsonPropertyName("ath_date")]
+        public DateTimeOffset? AthDate { get; set; }
 
-        /// <summary>
-        /// Изменение рыночной капитализации монеты за последние 24 часа.
-        /// </summary>
-        public long MarketCapChange24h { get; set; }
+        [JsonPropertyName("atl")]
+        public double? Atl { get; set; }
 
-        /// <summary>
-        /// Изменение рыночной капитализации монеты за последние 24 часа в процентном соотношении.
-        /// </summary>
-        public double MarketCapChangePercentage24h { get; set; }
+        [JsonPropertyName("atl_change_percentage")]
+        public double? AtlChangePercentage { get; set; }
 
-        /// <summary>
-        /// Количество монет в обращении.
-        /// </summary>
-        public double CirculatingSupply { get; set; }
+        [JsonPropertyName("atl_date")]
+        public DateTimeOffset? AtlDate { get; set; }
 
-        /// <summary>
-        /// Общее количество монет в обращении.
-        /// </summary>
-        public double TotalSupply { get; set; }
+        [JsonPropertyName("roi")]
+        public Roi Roi { get; set; }
 
-        /// <summary>
-        /// Максимальное количество монет, которое может существовать.
-        /// </summary>
-        public double MaxSupply { get; set; }
+        [JsonPropertyName("last_updated")]
+        public DateTimeOffset? LastUpdated { get; set; }
 
-        /// <summary>
-        /// Исторический максимум цены монеты.
-        /// </summary>
-        public double Ath { get; set; }
+        [JsonPropertyName("sparkline_in_7d")]
+        public SparklineIn7D SparklineIn7D { get; set; }
 
-        /// <summary>
-        /// Изменение цены от исторического максимума в процентном соотношении.
-        /// </summary>
-        public double AthChangePercentage { get; set; }
+        [JsonPropertyName("price_change_percentage_14d_in_currency")]
+        public double? PriceChangePercentage14DInCurrency { get; set; }
 
-        /// <summary>
-        /// Дата достижения исторического максимума цены монеты.
-        /// </summary>
-        public DateTime AthDate { get; set; }
+        [JsonPropertyName("price_change_percentage_1h_in_currency")]
+        public double? PriceChangePercentage1HInCurrency { get; set; }
 
-        /// <summary>
-        /// Исторический минимум цены монеты.
-        /// </summary>
-        public double Atl { get; set; }
+        [JsonPropertyName("price_change_percentage_1y_in_currency")]
+        public double? PriceChangePercentage1YInCurrency { get; set; }
 
-        /// <summary>
-        /// Изменение цены от исторического минимума в процентном соотношении.
-        /// </summary>
-        public double AtlChangePercentage { get; set; }
+        [JsonPropertyName("price_change_percentage_200d_in_currency")]
+        public double? PriceChangePercentage200DInCurrency { get; set; }
 
-        /// <summary>
-        /// Дата достижения исторического минимума цены монеты.
-        /// </summary>
-        public DateTime AtlDate { get; set; }
+        [JsonPropertyName("price_change_percentage_24h_in_currency")]
+        public double? PriceChangePercentage24HInCurrency { get; set; }
 
-        /// <summary>
-        /// Возврат на инвестиции (ROI).
-        /// </summary>
-        public double? Roi { get; set; }
+        [JsonPropertyName("price_change_percentage_30d_in_currency")]
+        public double? PriceChangePercentage30DInCurrency { get; set; }
 
-        /// <summary>
-        /// Время последнего обновления данных.
-        /// </summary>
-        public DateTime LastUpdated { get; set; }
+        [JsonPropertyName("price_change_percentage_7d_in_currency")]
+        public double? PriceChangePercentage7DInCurrency { get; set; }
+
+        [JsonPropertyName("market_cap_rank")]
+        public long? MarketCapRank { get; set; }
+
+        [JsonPropertyName("price_change_24h")]
+        public double? PriceChange24H { get; set; }
+
+        [JsonPropertyName("price_change_percentage_24h")]
+        public double? PriceChangePercentage24H { get; set; }
+
+        [JsonPropertyName("market_cap_change_24h")]
+        public double? MarketCapChange24H { get; set; }
+
+        [JsonPropertyName("market_cap_change_percentage_24h")]
+        public double? MarketCapChangePercentage24H { get; set; }
+
+        [JsonPropertyName("circulating_supply")]
+        public double? CirculatingSupply { get; set; }
+
+        [JsonPropertyName("total_supply")]
+        public double? TotalSupply { get; set; }
     }
 
 }

@@ -12,22 +12,20 @@ namespace Crypto_Desktop.Client
     public class BaseApiClient : IHttpClient
     {
         private readonly HttpClient _httpClient;
-        public BaseApiClient() {  _httpClient = new(); }
+        public BaseApiClient() 
+        {  
+            _httpClient = new();
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"+ " like Gecko) Chrome/112.0.0.0 Safari/537.36");
+        }
         public BaseApiClient(HttpClient httpClient) => _httpClient = httpClient;
         public async Task<T> GetAsync<T>(Uri resourceUri)
         {
-            resourceUri = new Uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&x-cg-demo-api-key=CG-swERyLU4zGgkvKSbTz6mSwym");
-            //resourceUri = new Uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en");
-            //resourceUri = new Uri("https://api.coingecko.com/v2/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=true&price_change_percentage=24h");
-            //resourceUri = new Uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en&x_cg_demo_api_key=CG-swERyLU4zGgkvKSbTz6mSwym");
-            var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, resourceUri))
-                .ConfigureAwait(false);
-
-            response.EnsureSuccessStatusCode();
-
-            var responseContent = await response.Content.ReadAsStringAsync();
             try
             {
+                var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, resourceUri));
+                response.EnsureSuccessStatusCode();
+                var responseContent = await response.Content.ReadAsStringAsync();
+
                 T var = JsonSerializer.Deserialize<T>(responseContent);
                 return var;
             }
