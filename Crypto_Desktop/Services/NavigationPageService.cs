@@ -80,7 +80,6 @@ namespace Crypto_Desktop.Services
 
         private void CreatePageViewModelMappings()
         {
-            // Add your ViewModel to View mappings here
             _mappings.Add(typeof(VM_MainPage), typeof(V_MainPage));
 
             //_mappings.Add(typeof(VM_Logo), typeof(V_Logo));
@@ -89,8 +88,7 @@ namespace Crypto_Desktop.Services
             
             _mappings.Add(typeof(VM_LogoutPage), typeof(V_LogoutPage));
             _mappings.Add(typeof(VM_ProfilePage), typeof(V_ProfilePage));
-
-            // ... add other mappings
+            _mappings.Add(typeof(VM_DetailCoin), typeof(V_DetailCoin));
         }
 
         public bool IsCurrentPage<TViewModel>() where TViewModel : VM_Base

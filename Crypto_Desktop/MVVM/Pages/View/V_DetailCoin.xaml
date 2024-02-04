@@ -1,0 +1,197 @@
+﻿<Page x:Class="Crypto_Desktop.MVVM.Pages.View.V_DetailCoin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Crypto_Desktop.MVVM.Pages.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:vmodel="clr-namespace:Crypto_Desktop.MVVM.Pages.ViewModel"
+      xmlns:header="clr-namespace:Crypto_Desktop.MVVM.Header"
+      xmlns:converter="clr-namespace:Crypto_Desktop.Services"
+      Title="V_DetailCoin">
+
+    <Page.DataContext>
+        <vmodel:VM_DetailCoin/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <converter:PercentageToBrush x:Key="PercentageToBrush"/>
+            <converter:SparklineToSvg x:Key="SparklineToSvg"/>
+            <converter:PercentageToText x:Key="PercentageToText"/>
+            <converter:DecimalToVariableCurrency x:Key="DecimalToVariableCurrency"/>
+            <converter:DecimalToShortCurrency x:Key="DecimalToShortCurrency"/>
+            <converter:StringToUp x:Key="StringToUp"/>
+            
+            <Style x:Key="mainCont" TargetType="Grid">
+                
+            </Style>
+
+            <Style x:Key="b_BackSearchContainer" TargetType="Border">
+                <Setter Property="Background" Value="#272a31"/>
+                <Setter Property="Margin" Value="0 32"/>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="CornerRadius" Value="8"/>
+            </Style>
+
+            <Style x:Key="txtb_HeaderTable" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+            <Style x:Key="stp_Information" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Margin" Value="0 24 0 0"/>
+            </Style>
+            <Style x:Key="gr_Information" TargetType="Grid">
+                <Setter Property="Margin" Value="0 24 0 0"/>
+            </Style>
+
+
+            <Style x:Key="base_simple_text" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="simple_primary_text" TargetType="TextBlock" BasedOn="{StaticResource base_simple_text}">
+                <Setter Property="Foreground" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="TextAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="simple_secondary_text" TargetType="TextBlock" BasedOn="{StaticResource base_simple_text}">
+                <Setter Property="Foreground" Value="{StaticResource primaryTextColor}"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+        
+    <Grid Style="{StaticResource mainCont}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <header:PageHeader Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <!--CONTENT-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <!--Diagramm-->
+            <Grid Grid.Column="0" Margin="35" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Path
+                    StrokeEndLineCap="Round"
+                    StrokeLineJoin="Bevel"
+                    HorizontalAlignment="Center"
+                    Stroke="red"
+                    StrokeThickness="2"
+                    Stretch="Uniform"
+                    Data="{Binding Path=Coin.SparklineIn7D, Converter={StaticResource SparklineToSvg}}">
+                </Path>
+            </Grid>
+
+            <!--Info about Coin-->
+            <Border Grid.Column="1" Style="{StaticResource b_BackSearchContainer}">
+            <Grid>
+                <StackPanel Width="auto" Height="auto" Margin="16">
+                    
+                    <TextBlock Style="{StaticResource txtb_HeaderTable}">
+                        <Run Text="{Binding Coin.Symbol, Converter={StaticResource StringToUp}}" />
+                        <Run Text="price statistics"/>
+                    </TextBlock>
+                    <!--Current price-->
+                        <Grid Style="{StaticResource gr_Information}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource simple_primary_text}">
+                            <Run Text="{Binding Coin.Name}"/>
+                            <Run Text=" price"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Coin.CurrentPrice, Converter={StaticResource DecimalToVariableCurrency}}" Style="{StaticResource simple_secondary_text}"/>
+                    </Grid>
+                    
+                    <!--Price change 24h-->
+                        <Grid Style="{StaticResource gr_Information}">
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                            
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource simple_primary_text}">
+                            <Run Text="Price change 24H"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding Coin.PriceChangePercentage24H, Converter={StaticResource PercentageToText}}" Foreground="{Binding Coin.PriceChangePercentage24H, Converter={StaticResource PercentageToBrush}}" Style="{StaticResource simple_secondary_text}"/>
+                        <!--<TextBlock Grid.Column="1" Grid.Row="1"  Text="{Binding Coin.PriceChangePercentage24H, Converter={StaticResource PercentageToText}}" Foreground="{Binding Coin.PriceChangePercentage24H, Converter={StaticResource PercentageToBrush}}" Style="{StaticResource simple_secondary_text}"/>-->
+                        <TextBlock Grid.Column="1" Grid.Row="1"  Text="{Binding Coin.PriceChange24H, Converter={StaticResource DecimalToVariableCurrency}}" Style="{StaticResource simple_secondary_text}"/>
+                    </Grid>
+                    <!--Price change 7h--><!--
+                    <Grid Height="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                            
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource simple_primary_text}">
+                            <Run Text="Price change 24H"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding Coin.PriceChangePercentage7H, Converter={StaticResource PercentageToText}}" Foreground="{Binding Coin.PriceChangePercentage7H, Converter={StaticResource PercentageToBrush}}" Style="{StaticResource simple_secondary_text}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1"  Text="{Binding Coin.PriceChange7H, Converter={StaticResource DecimalToVariableCurrency}}" Style="{StaticResource simple_secondary_text}"/>
+                    </Grid>-->
+                    
+                    <!--24h Low/ 24h High-->
+                        <Grid Style="{StaticResource gr_Information}">
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                            
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource simple_primary_text}">
+                            <Run Text="24h Low/ 24h High"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding Coin.Low24H}" Style="{StaticResource simple_secondary_text}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1"  Text="{Binding Coin.High24H}" Style="{StaticResource simple_secondary_text}"/>
+                    </Grid>
+
+                    <!--Market Cap Rank-->
+                        <Grid Style="{StaticResource gr_Information}">
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource simple_primary_text}">
+                        <Run Text="Market Cap Rank"/>
+                            </TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Coin.MarketCapRank}" Style="{StaticResource simple_secondary_text}"/>
+                    </Grid>
+                    
+                    </StackPanel>
+            </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

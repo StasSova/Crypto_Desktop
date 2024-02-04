@@ -1,5 +1,4 @@
 ﻿using Crypto_Desktop.MVVM.Pages.ViewModel;
-using Crypto_Desktop.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,24 +17,13 @@ using System.Windows.Shapes;
 namespace Crypto_Desktop.MVVM.Pages.View
 {
     /// <summary>
-    /// Interaction logic for V_UC_CollectionCoins.xaml
+    /// Interaction logic for V_DetailCoin.xaml
     /// </summary>
-    public partial class V_UC_CollectionCoins : UserControl
+    public partial class V_DetailCoin : Page
     {
-        public V_UC_CollectionCoins()
+        public V_DetailCoin()
         {
-            this.DataContext = VM_MainPage.Instance;
             InitializeComponent();
-        }
-
-        private void Coin_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                string CoinId = (string)((StackPanel)sender).Tag;
-                NavigationPageService.Instance.NavigateTo<VM_DetailCoin>(CoinId);
-            }
-            catch { }
         }
     }
 }

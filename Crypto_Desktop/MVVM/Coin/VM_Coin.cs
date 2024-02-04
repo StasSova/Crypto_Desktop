@@ -68,6 +68,15 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(MarketCap));
             }
         }
+        public SparklineIn7D SparklineIn7D 
+        { 
+            get { return _coin.SparklineIn7D; }
+            set
+            {
+                _coin.SparklineIn7D = value;
+                OnPropertyChanged(nameof(SparklineIn7D));
+            }
+        }
         public long? MarketCapRank
         {
             get { return _coin.MarketCapRank; }
@@ -95,7 +104,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(TotalVolume));
             }
         }
-        public double? High24H
+        public decimal? High24H
         {
             get { return _coin.High24H; }
             set
@@ -104,7 +113,7 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(High24H));
             }
         }
-        public double? Low24H
+        public decimal? Low24H
         {
             get { return _coin.Low24H; }
             set
@@ -113,13 +122,22 @@ namespace Crypto_Desktop.MVVM.Coin
                 OnPropertyChanged(nameof(Low24H));
             }
         }
-        public double? PriceChange24H
+        public decimal? PriceChange24H
         {
             get { return _coin.PriceChange24H; }
             set
             {
                 _coin.PriceChange24H = value;
                 OnPropertyChanged(nameof(PriceChange24H));
+            }
+        }
+        public decimal? PriceChange7H
+        {
+            get { return _coin.PriceChange7H; }
+            set
+            {
+                _coin.PriceChange7H = value;
+                OnPropertyChanged(nameof(PriceChange7H));
             }
         }
         public double? PriceChangePercentage24H
@@ -129,6 +147,15 @@ namespace Crypto_Desktop.MVVM.Coin
             {
                 _coin.PriceChangePercentage24H = value;
                 OnPropertyChanged(nameof(PriceChangePercentage24H));
+            }
+        }        
+        public double? PriceChangePercentage7H
+        {
+            get { return _coin.PriceChangePercentage7H; }
+            set
+            {
+                _coin.PriceChangePercentage7H = value;
+                OnPropertyChanged(nameof(PriceChangePercentage7H));
             }
         }
         public double? MarketCapChange24H

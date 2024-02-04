@@ -34,10 +34,10 @@ namespace Crypto_Desktop.MVVM.Coin
         public decimal? TotalVolume { get; set; }
 
         [JsonPropertyName("high_24h")]
-        public double? High24H { get; set; }
+        public decimal? High24H { get; set; }
 
         [JsonPropertyName("low_24h")]
-        public double? Low24H { get; set; }
+        public decimal? Low24H { get; set; }
 
         [JsonPropertyName("ath")]
         public double? Ath { get; set; }
@@ -91,10 +91,16 @@ namespace Crypto_Desktop.MVVM.Coin
         public long? MarketCapRank { get; set; }
 
         [JsonPropertyName("price_change_24h")]
-        public double? PriceChange24H { get; set; }
+        public decimal? PriceChange24H { get; set; }
+
+        [JsonPropertyName("price_change_7h")]
+        public decimal? PriceChange7H { get; set; }
 
         [JsonPropertyName("price_change_percentage_24h")]
         public double? PriceChangePercentage24H { get; set; }
+
+        [JsonPropertyName("price_change_percentage_7h")]
+        public double? PriceChangePercentage7H { get; set; }
 
         [JsonPropertyName("market_cap_change_24h")]
         public double? MarketCapChange24H { get; set; }

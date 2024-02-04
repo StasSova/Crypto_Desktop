@@ -8,9 +8,45 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+using Crypto_Desktop.MVVM.Coin;
 
 namespace Crypto_Desktop.Services
 {
+    public class SparklineToSvg : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            culture = CultureInfo.InvariantCulture;
+
+            int index = 0;
+            var SparklineIn7D = value as SparklineIn7D;
+            var max = SparklineIn7D.Price.Max();
+            var avg = SparklineIn7D.Price.Average();
+            var coef = max - avg;
+            var scale = 14 / (coef == 0 ? 14 : coef);
+
+            string path = SparklineIn7D.Price.Aggregate("", (path, price) =>
+            {
+                char instruction = index == 0 ? 'M' : 'L';
+                path = string.Format(
+                    culture,
+                    "{0} {1}{2} {3:0.###}",
+                    path,
+                    instruction,
+                    index,
+                    (max - price) * scale
+                );
+                index++;
+                return path;
+            });
+            return path;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class StringToUp : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

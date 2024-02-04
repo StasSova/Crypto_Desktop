@@ -37,6 +37,7 @@
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Trigger.Setters>
+                            <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Background" Value="{StaticResource onHoverCoinBackgroundColor}"/>
                         </Trigger.Setters>
                     </Trigger>
@@ -150,9 +151,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vmodel:VM_MainPage/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     
     <ScrollViewer Background="Transparent" Margin="0 2 0 0" PanningMode="VerticalOnly" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
 
@@ -201,7 +202,7 @@
             <ItemsControl Grid.Row="2" ItemsSource="{Binding Coins}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Tag="{Binding Id}" Style="{StaticResource CoinContainer}">
+                        <StackPanel Tag="{Binding Id}" MouseLeftButtonUp="Coin_MouseLeftButtonUp" Style="{StaticResource CoinContainer}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>

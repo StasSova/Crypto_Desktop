@@ -27,7 +27,7 @@ namespace Crypto_Desktop.MVVM.Pages.ViewModel
                 return _instance;
             }
         }
-        public VM_MainPage() 
+        private VM_MainPage() 
         {
             Client = new CoinsClient();
             SelectedCurrency = Currency.usd;
